@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Valentine’s Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 430px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: cardFade 1.2s ease;
+        }
+
+        @keyframes cardFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 26px;
+        }
+
+        .photo {
+            width: 260px;
+            border-radius: 18px;
+            margin: 18px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 1.5s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .photo:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4d6d, #ff6f91);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 16px;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .soft {
+            font-style: italic;
+            margin-top: 22px;
+        }
+
+        .small {
+            font-size: 14px;
+        }
+
+        .tiny {
+            font-size: 11px;
+            opacity: 0.35;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>Happy Valentine’s Day, Izzy ❤️</h1>
+
+        <img src="memory1.jpg" class="photo" alt="Memory 1">
+        <img src="memory2.jpg" class="photo" alt="Memory 2">
+        <img src="memory3.jpg" class="photo" alt="Memory 3">
+        <img src="memory4.jpg" class="photo" alt="Memory 4">
+
+        <p id="message">I made this just for you.</p>
+
+        <button onclick="changeMessage()">Click me 💌</button>
+
+        <p class="soft">
+            I like you because you make everything feel lighter,  
+            and being around you Izzy just lightens my mood.
+        </p>
+
+        <p class="small">
+            Favorite memory: Car Rots, our first date, and when I realized  
+            I was in love with you in Aruba.
+        </p>
+
+        <button onclick="askValentine()">Will you be my Valentine? 💘</button>
+        <p id="answer"></p>
+
+        <p class="small">see it wasnt a virus!</p>
+
+        <p class="tiny">
+            If you found this, you’re officially my favorite person.
+        </p>
+
+        <p class="tiny">— Ryan ❤️</p>
+    </div>
+
+    <script>
+        const messages = [
+            "You make my days better ❤️",
+            "You’re my favorite person, easy.",
+            "I smile way too much because of you 😌",
+            "There’s no one I’d rather spend time with.",
+            "Happy Valentine’s Day 💘"
+        ];
+
+        let index = 0;
+
+        function changeMessage() {
+            document.getElementById("message").innerText = messages[index];
+            index = (index + 1) % messages.length;
+
+            burstHearts(6);
+        }
+
+        function askValentine() {
+            document.getElementById("answer").innerText =
+                "I was hoping you’d say yes 😊❤️";
+            burstHearts(12);
+        }
+
+        function burstHearts(amount) {
+            for (let i = 0; i < amount; i++) {
+                const heart = document.createElement("div");
+                heart.innerHTML = "💖";
+                heart.style.position = "fixed";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.fontSize = "18px";
+                heart.style.animation = "floatUp 2.5s linear";
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 2500);
+            }
+        }
+
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.fontSize = "18px";
+            heart.style.animation = "floatUp 5s linear";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }, 900);
+    </script>
+</body>
+</html>
